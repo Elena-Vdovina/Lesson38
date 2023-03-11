@@ -22,13 +22,6 @@ public class Pet {
     this.nickname = nickname;
   }
 
-  /*
-    Pet(String kind, String nickname, String dataBirthday){
-      setKind(kind);
-      this.nickname=nickname;
-      this.dataBirthday=dataBirthday;
-    }
-  */
   Pet(String kind, String nickname, Double weight) {
     setKind(kind);
     this.nickname = nickname;
@@ -81,26 +74,29 @@ public class Pet {
   }
 
   public static Pet parsePet(String line) {
-    int firstSepIndex = line.indexOf(SEP);
-    int secondSepIndex = line.indexOf(SEP, firstSepIndex + 1);
-    int thirdSepIndex = line.indexOf(SEP, secondSepIndex + 1);
+    int firstSepIndex = -1;
+    int secondSepIndex = -1;
+    int thirdSepIndex = -1;
     String kind = "other";
     String nickname = "";
     String dataBirthday = "";
     String sweight = "";
-    Double weight = -1.0;
+    double weight = 0.0;
+    firstSepIndex = line.indexOf(SEP);
     if (firstSepIndex != -1) {
+      secondSepIndex = line.indexOf(SEP, firstSepIndex + 1);
       kind = line.substring(0, firstSepIndex);
       nickname = line.substring(firstSepIndex + 1);
     } else {
-      return new Pet(kind,/*nickname*/line);
+      return new Pet(kind,/*nickname*/line, weight, dataBirthday);
     }
     if (secondSepIndex != -1) {
-      nickname = line.substring(firstSepIndex + 1, secondSepIndex-1);
+      thirdSepIndex = line.indexOf(SEP, secondSepIndex + 1);
+      nickname = line.substring(firstSepIndex + 1, secondSepIndex);
       sweight = line.substring(secondSepIndex + 1);
     }
     if (thirdSepIndex != -1) {
-      sweight = line.substring(secondSepIndex + 1, thirdSepIndex-1);
+      sweight = line.substring(secondSepIndex + 1, thirdSepIndex);
       dataBirthday = line.substring(thirdSepIndex + 1);
     }
     if (secondSepIndex != -1 || thirdSepIndex != -1) {
@@ -110,5 +106,4 @@ public class Pet {
   }
 
 }
-
 
