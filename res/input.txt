@@ -1,0 +1,5 @@
+Иванов,ivanov@mail.ru
+Петров,petrov@mail.ru
+Сидоров,sidorov@mail.ru
+Михайлов,michalov@mail.ru
+Смирнов,smirnov@mail.ru
