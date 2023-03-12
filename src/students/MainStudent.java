@@ -32,14 +32,12 @@ public class MainStudent {
     String groupName = br.readLine();
     int studentsNumber = Integer.parseInt(br.readLine());
     BufferedReader fr = new BufferedReader(new FileReader("res/input.txt"));
-    String file = "res/spisok" + groupName + ".txt";
-    FileWriter fw = new FileWriter(file, true);
+    FileWriter fw = new FileWriter("res/allstudents", true);
     for (int i = 0; i < studentsNumber; ++i) {
       String line = fr.readLine();
       Student student = Student.parseStudent(groupName, line);
       students.add(student);
-      fw.write(student.getName() + " (" + student.getEMail() + ") в группе "
-          + student.getGroup() + "\n");
+      fw.write(student.getName() + "," + student.getEMail() + "," + student.getGroup() + "\n");
     }
     fw.close();
     fr.close();
